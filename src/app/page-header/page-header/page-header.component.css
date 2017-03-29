@@ -1,0 +1,18 @@
+.header-card {
+  height: 100px;
+}
+
+.header {
+  text-align: left;
+  padding-left: 5vw;
+}
+
+.header.title {
+  font-size: 4em;
+}
+
+.header.subtitle {
+  font-size: 1em;
+}
+
+

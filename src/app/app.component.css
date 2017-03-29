@@ -1,21 +1,28 @@
-/*.example-container {*/
-  /*width: 500px;*/
-  /*height: 300px;*/
-  /*border: 1px solid rgba(0, 0, 0, 0.5);*/
-/*}*/
-
-.sidenav-content {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
 .sidenav {
-  padding: 150px;
-
 }
 
 .hamburger-menu {
   position: relative;
+}
+
+.sidebar-header {
+  height: 10%;
+  width: 300px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
+.sidebar-content {
+  height: 70%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.logout-button {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  flex-shrink:1;
+  float: none;
 }

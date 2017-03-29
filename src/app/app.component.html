@@ -1,19 +1,22 @@
 <md-sidenav-container class="example-container" fullscreen>
   <md-sidenav #sidenav class="sidenav" mode="push">
-    Jolly good!
+    <md-card class="sidebar-header">
+      <md-card-title>BASYXLab</md-card-title>
+      <md-card-subtitle>Some shitty company</md-card-subtitle>
+    </md-card>
+    <md-card class="sidebar-content"></md-card>
+    <button md-raised-button class="logout-button">Logout</button>
   </md-sidenav>
 
-  <button class="hamburger hamburger--collapse" type="button">
-  <span class="hamburger-box">
-    <span class="hamburger-inner"></span>
-  </span>
+  <button class="hamburger hamburger--arrowalt" type="button" (onCloseStart)="onCloseStart(event)" (click)="toggleMenu(sidenav)">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
   </button>
-  <!--<div class="sidenav-content">-->
-    <!--<button class="border-menu" md-button (click)="sidenav.open()">-->
-    <!--</button>-->
-  <!--</div>-->
-  <!--<app-page-header></app-page-header>-->
-  <!--<app-panel></app-panel>-->
+
+  <app-page-header></app-page-header>
+
+  <app-panel></app-panel>
 
 
 </md-sidenav-container>

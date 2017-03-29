@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageHeaderComponent implements OnInit {
 
+  title = 'Hola mon amis!';
+  subtitle = "I'm not that racist!";
+
   constructor() { }
 
   ngOnInit() {
