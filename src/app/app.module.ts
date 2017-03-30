@@ -3,18 +3,21 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
+import { RouterModule, Routes } from "@angular/router";
 
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './sidebar/sidebar/sidebar.component';
 import { PageHeaderComponent } from './page-header/page-header/page-header.component';
 import { PanelComponent } from './panel/panel/panel.component';
 import { CardComponent } from './panel/card/card.component';
+
+const appRoutes: Routes = [
+  { path: 'active-schemes', component: PanelComponent }
+];
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
     PageHeaderComponent,
     PanelComponent,
     CardComponent
@@ -23,7 +26,8 @@ import { CardComponent } from './panel/card/card.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
