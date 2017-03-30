@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Router, NavigationEnd} from "@angular/router";
+
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-page-header',
@@ -7,12 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageHeaderComponent implements OnInit {
 
-  title = 'Hola mon amis!';
-  subtitle = "I'm not that racist!";
+  title: String;
+  subtitle: String;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) {
+    this.title = 'Bonjour tout le monde!';
+    this.subtitle = 'Comment vas tu?';
+  }
 
   ngOnInit() {
+    this.router.events
+      .filter(event => event instanceof NavigationEnd)
+      .subscribe((event) => {
+        console.log(event);
+        this.title = event.url;
+      })
   }
 
 }

@@ -11,7 +11,10 @@ import { PanelComponent } from './panel/panel/panel.component';
 import { CardComponent } from './panel/card/card.component';
 
 const appRoutes: Routes = [
-  { path: 'active-schemes', component: PanelComponent }
+  { path: '', component: PanelComponent },
+  { path: 'activated', component:  PanelComponent},
+  { path: 'deactivated', component:  PanelComponent},
+  { path: 'requests', component:  PanelComponent}
 ];
 
 

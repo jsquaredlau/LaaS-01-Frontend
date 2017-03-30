@@ -20,5 +20,18 @@ export class AppComponent {
     this.hamburgerOpen = false;
     console.log('lel');
   }
+
+  showActiveDashboard(): void {
+
+  }
+
+  showDeactiveDashboard(): void {
+
+  }
+
+  showRequestsDasboard(): void {
+    
+  }
+
 }
 

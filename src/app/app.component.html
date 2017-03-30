@@ -1,20 +1,22 @@
 <md-sidenav-container class="example-container" fullscreen>
   <md-sidenav #sidenav class="sidenav" mode="push" (close-start)="closeHamburger()  ">
+
     <md-card class="sidebar-header">
       <md-card-title>BASYXLab</md-card-title>
       <md-card-subtitle>Some shitty company</md-card-subtitle>
     </md-card>
+
     <md-card class="sidebar-content">
       <div class="btn-group">
-        <button class="button button--pipaluk button--round-l button--text-thick button--text-upper">Active</button>
-        <button class="button button--pipaluk button--round-l button--text-thick button--text-upper">Deactive</button>
-        <button class="button button--pipaluk button--round-l button--text-thick button--text-upper">Collaboration Requests</button>
+        <button [routerLink]="['/activated']" class="button button--pipaluk button--round-l button--text-thick button--text-upper">Active</button>
+        <button routerLink="/deactivated" class="button button--pipaluk button--round-l button--text-thick button--text-upper">De-active</button>
+        <button routerLink="/requests" class="button button--pipaluk button--round-l button--text-thick button--text-upper">Collaboration Requests</button>
       </div>
     </md-card>
     <button md-raised-button class="logout-button">Logout</button>
   </md-sidenav>
 
-  <button class="hamburger hamburger--arrowalt" [ngClass]="{'is-active': hamburgerOpen}" type="button" (click)="toggleMenu(sidenav)">
+  <button class="hamburger hamburger--arrowalt no-outline" [ngClass]="{'is-active': hamburgerOpen}" type="button" (click)="toggleMenu(sidenav)">
     <span class="hamburger-box">
       <span class="hamburger-inner"></span>
     </span>
