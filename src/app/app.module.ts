@@ -5,10 +5,14 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from "@angular/router";
 
+
+
 import { AppComponent } from './app.component';
 import { PageHeaderComponent } from './page-header/page-header/page-header.component';
 import { PanelComponent } from './panel/panel/panel.component';
 import { CardComponent } from './panel/card/card.component';
+import { NgInitDirective } from './shared/ng-init.directive';
+import {AngularFireModule} from "angularfire2";
 
 const appRoutes: Routes = [
   { path: '', component: PanelComponent },
@@ -17,20 +21,30 @@ const appRoutes: Routes = [
   { path: 'requests', component:  PanelComponent}
 ];
 
+var firebaseConfig = {
+  apiKey: "AIzaSyBQNNPknNbL21FqtJLDbZpd9DvC3Nqudnk",
+  authDomain: "laas-1.firebaseapp.com",
+  databaseURL: "https://laas-1.firebaseio.com",
+  projectId: "laas-1",
+  storageBucket: "laas-1.appspot.com",
+  messagingSenderId: "622638005740"
+};
 
 @NgModule({
   declarations: [
     AppComponent,
     PageHeaderComponent,
     PanelComponent,
-    CardComponent
+    CardComponent,
+    NgInitDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     MaterialModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
-import {Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
+
 
 @Component({
   selector: 'app-root',
@@ -11,6 +13,10 @@ export class AppComponent {
 
   hamburgerOpen = false;
 
+  constructor(af: AngularFire) {
+
+  }
+
   toggleMenu(sidenav: any): void {
     this.hamburgerOpen = !this.hamburgerOpen;
     sidenav.toggle();
@@ -19,18 +25,6 @@ export class AppComponent {
   closeHamburger(): void {
     this.hamburgerOpen = false;
     console.log('lel');
-  }
-
-  showActiveDashboard(): void {
-
-  }
-
-  showDeactiveDashboard(): void {
-
-  }
-
-  showRequestsDasboard(): void {
-    
   }
 
 }
