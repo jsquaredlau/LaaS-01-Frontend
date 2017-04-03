@@ -13,11 +13,12 @@ import { PanelComponent } from './panel/panel/panel.component';
 import { CardComponent } from './panel/card/card.component';
 import { NgInitDirective } from './shared/ng-init.directive';
 import {AngularFireModule} from "angularfire2";
+import { DeactivePanelComponent } from './panel/deactive-panel/deactive-panel.component';
 
 const appRoutes: Routes = [
   { path: '', component: PanelComponent },
   { path: 'activated', component:  PanelComponent},
-  { path: 'deactivated', component:  PanelComponent},
+  { path: 'deactivated', component:  DeactivePanelComponent},
   { path: 'requests', component:  PanelComponent}
 ];
 
@@ -36,7 +37,8 @@ var firebaseConfig = {
     PageHeaderComponent,
     PanelComponent,
     CardComponent,
-    NgInitDirective
+    NgInitDirective,
+    DeactivePanelComponent
   ],
   imports: [
     BrowserModule,
