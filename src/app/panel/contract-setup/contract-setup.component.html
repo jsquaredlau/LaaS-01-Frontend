@@ -1,0 +1,29 @@
+<md-card class="panel">
+  <h1>Step 1 : Select Scheme Type</h1>
+  <app-card [title]="'Token'"></app-card>
+  <app-card [title]="'FX'"></app-card>
+  <app-card [title]="'Reward Mile'"></app-card>
+  <h1>Step 2 : Details</h1>
+  <md-input-container>
+    <input mdInput [hidden]=false placeholder="Scheme Name">
+  </md-input-container>
+  <md-input-container>
+      <textarea mdInput [hidden]=false placeholder="Description"></textarea>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [hidden]=false placeholder="Token Name">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [hidden]=false placeholder="Partner Name">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [hidden]=false placeholder="Partner Address">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [hidden]=false placeholder="To Partner FX">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [hidden]=false placeholder="To Owner FX">
+  </md-input-container>
+  <button md-button>DEPLOY</button>
+</md-card>

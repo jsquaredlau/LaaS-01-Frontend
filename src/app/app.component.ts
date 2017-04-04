@@ -12,6 +12,8 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
 export class AppComponent {
 
   hamburgerOpen = false;
+  public result: any;
+
 
   constructor(af: AngularFire) {
 

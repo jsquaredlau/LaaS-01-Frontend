@@ -13,7 +13,13 @@ export class CardComponent implements OnInit {
   @Input() title: any;
 
   ngOnInit() {
-    this.cardName = this.title.$key;
+    if (this.title !== undefined){
+      if (typeof this.title === 'string') {
+        this.cardName = this.title;
+      } else if (typeof this.title === 'object') {
+        this.cardName = this.title.$key;
+      }
+    }
   }
 
   setTitle(title): void {

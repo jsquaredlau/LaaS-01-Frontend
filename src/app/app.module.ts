@@ -5,8 +5,6 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from "@angular/router";
 
-
-
 import { AppComponent } from './app.component';
 import { PageHeaderComponent } from './page-header/page-header/page-header.component';
 import { PanelComponent } from './panel/panel/panel.component';
@@ -14,12 +12,17 @@ import { CardComponent } from './panel/card/card.component';
 import { NgInitDirective } from './shared/ng-init.directive';
 import {AngularFireModule} from "angularfire2";
 import { DeactivePanelComponent } from './panel/deactive-panel/deactive-panel.component';
+import { ActiveDetailsPanelComponent } from './panel/active-details-panel/active-details-panel.component';
+import { ContractComponent } from './contract/contract/contract.component';
+import { ContractSetupComponent } from './panel/contract-setup/contract-setup.component';
 
 const appRoutes: Routes = [
   { path: '', component: PanelComponent },
   { path: 'activated', component:  PanelComponent},
   { path: 'deactivated', component:  DeactivePanelComponent},
-  { path: 'requests', component:  PanelComponent}
+  { path: 'requests', component:  PanelComponent},
+  { path: 'activated/:scheme', component: ActiveDetailsPanelComponent},
+  { path: 'contract/setup', component: ContractSetupComponent}
 ];
 
 var firebaseConfig = {
@@ -38,7 +41,10 @@ var firebaseConfig = {
     PanelComponent,
     CardComponent,
     NgInitDirective,
-    DeactivePanelComponent
+    DeactivePanelComponent,
+    ActiveDetailsPanelComponent,
+    ContractComponent,
+    ContractSetupComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +53,9 @@ var firebaseConfig = {
     MaterialModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig)
+  ],
+  entryComponents: [
+    ContractComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
