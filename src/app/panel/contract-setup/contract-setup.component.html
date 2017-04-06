@@ -11,8 +11,14 @@
     <md-input-container *ngIf="step1">
       <textarea mdInput ngModel name="description" placeholder="Description"></textarea>
     </md-input-container>
-    <md-input-container *ngIf="tokenChosen">
+    <md-input-container *ngIf="step1">
       <input mdInput ngModel type="text" name="tokenName" placeholder="Token Name">
+    </md-input-container>
+    <md-input-container *ngIf="fxChosen">
+      <input mdInput ngModel type="text" name="ownerName" placeholder="Owner Name">
+    </md-input-container>
+    <md-input-container *ngIf="fxChosen">
+      <input mdInput ngModel type="text" name="vaultAddress" placeholder="Vault Address">
     </md-input-container>
     <md-input-container *ngIf="fxChosen">
       <input mdInput ngModel type="text" name="partnerName" placeholder="Partner Name">

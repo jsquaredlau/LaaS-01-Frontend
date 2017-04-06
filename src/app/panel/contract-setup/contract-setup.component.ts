@@ -57,24 +57,38 @@ export class ContractSetupComponent implements OnInit {
     this.awaitingDeployment = true;
     form.value['region'] = 'JPN';
     form.value['origin'] = 'LaaS1';
-    form.value['conractKey'] = 0;
+    form.value['contractKey'] = 0;
     form.value['accounts'] = [];
     if (this.tokenChosen) {
-      form.value['schemeType'] = 'vault';
+      this.contractService.deployVault(form.value)
+        .subscribe(
+          () => {
+            this.snackBar.open('Vault Successfully Deployed', 'dismiss', {duration:2000});
+            this.awaitingDeployment = false;
+          },
+          err => {
+            console.log(err);
+            this.snackBar.open('It failed :(', 'dismiss', {duration:1000});
+            this.awaitingDeployment = false;
+          }
+        );
     } else if (this.fxChosen) {
-      form.value['schemeType'] = 'fx';
+      this.contractService.deployFx(form.value)
+        .subscribe(
+          () => {
+            this.snackBar.open('Fx with ' + form.value['partnerName'] + ' deployed', 'dismiss', {duration:2000});
+            this.awaitingDeployment = false;
+          },
+          err => {
+            console.log(err);
+            this.snackBar.open('It failed :(', 'dismiss', {duration:1000});
+            this.awaitingDeployment = false;
+          }
+        );
     }// else if (this.rewardMileChosen){
     //  form.value['contractType'] = 'rewardMile';
     //}
-    this.contractService.deployContract(form.value)
-      .subscribe(
-        deploymentStatus => {
-          console.log('it not even in here');
-          console.log(deploymentStatus);
-          this.snackBar.open('It succeeded! :D', 'dismiss', {duration: 2000});
-          this.awaitingDeployment = false;
-        }
-      );
+
     return;
   }
 }
