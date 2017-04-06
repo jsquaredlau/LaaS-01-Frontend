@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from "@angular/router";
@@ -10,11 +10,14 @@ import { PageHeaderComponent } from './page-header/page-header/page-header.compo
 import { PanelComponent } from './panel/panel/panel.component';
 import { CardComponent } from './panel/card/card.component';
 import { NgInitDirective } from './shared/ng-init.directive';
-import {AngularFireModule} from "angularfire2";
+import { AngularFireModule } from "angularfire2";
 import { DeactivePanelComponent } from './panel/deactive-panel/deactive-panel.component';
 import { ActiveDetailsPanelComponent } from './panel/active-details-panel/active-details-panel.component';
 import { ContractComponent } from './contract/contract/contract.component';
 import { ContractSetupComponent } from './panel/contract-setup/contract-setup.component';
+
+import { ContractService } from './shared/contract.service';
+import { AwesomeHttpModule, AwesomeHttpService } from 'ng2-awesome-http';
 
 const appRoutes: Routes = [
   { path: '', component: PanelComponent },
@@ -49,15 +52,19 @@ var firebaseConfig = {
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     MaterialModule,
     RouterModule.forRoot(appRoutes),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    AwesomeHttpModule
   ],
   entryComponents: [
     ContractComponent
   ],
-  providers: [],
+  providers: [
+    ContractService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

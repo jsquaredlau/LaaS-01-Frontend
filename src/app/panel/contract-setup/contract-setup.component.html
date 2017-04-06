@@ -1,29 +1,35 @@
-<md-card class="panel">
-  <h1>Step 1 : Select Scheme Type</h1>
-  <app-card [title]="'Token'"></app-card>
-  <app-card [title]="'FX'"></app-card>
-  <app-card [title]="'Reward Mile'"></app-card>
-  <h1>Step 2 : Details</h1>
-  <md-input-container>
-    <input mdInput [hidden]=false placeholder="Scheme Name">
-  </md-input-container>
-  <md-input-container>
-      <textarea mdInput [hidden]=false placeholder="Description"></textarea>
-  </md-input-container>
-  <md-input-container>
-    <input mdInput [hidden]=false placeholder="Token Name">
-  </md-input-container>
-  <md-input-container>
-    <input mdInput [hidden]=false placeholder="Partner Name">
-  </md-input-container>
-  <md-input-container>
-    <input mdInput [hidden]=false placeholder="Partner Address">
-  </md-input-container>
-  <md-input-container>
-    <input mdInput [hidden]=false placeholder="To Partner FX">
-  </md-input-container>
-  <md-input-container>
-    <input mdInput [hidden]=false placeholder="To Owner FX">
-  </md-input-container>
-  <button md-button>DEPLOY</button>
+<md-card class="panel" [ngClass]="{'schemeChosen': awaitingDeployment}">
+  <form  #contractDetailsForm="ngForm" (ngSubmit)="deployContract(contractDetailsForm)">
+    <h1>Step 1 : Select Scheme Type</h1>
+    <app-card [title]="'Token'" (click)="schemeChosen('token')" [ngClass]="{'schemeChosen': !tokenChosen}"></app-card>
+    <app-card [title]="'FX'" (click)="schemeChosen('fx')" [ngClass]="{'schemeChosen': !fxChosen}"></app-card>
+    <app-card [title]="'Reward Mile'" (click)="schemeChosen('rewardMile')" [ngClass]="{'schemeChosen': !rewardMileChosen}"></app-card>
+    <h1 [ngClass]="{'schemeChosen': !step1}">Step 2 : Details</h1>
+    <md-input-container *ngIf="step1">
+      <input mdInput ngModel type="text" name="schemeName" placeholder="Scheme Name">
+    </md-input-container>
+    <md-input-container *ngIf="step1">
+      <textarea mdInput ngModel name="description" placeholder="Description"></textarea>
+    </md-input-container>
+    <md-input-container *ngIf="tokenChosen">
+      <input mdInput ngModel type="text" name="tokenName" placeholder="Token Name">
+    </md-input-container>
+    <md-input-container *ngIf="fxChosen">
+      <input mdInput ngModel type="text" name="partnerName" placeholder="Partner Name">
+    </md-input-container>
+    <md-input-container *ngIf="fxChosen">
+      <input mdInput ngModel type="text" name="partnerAddress" placeholder="Partner Address">
+    </md-input-container>
+    <md-input-container *ngIf="fxChosen">
+      <input mdInput ngModel type="number" name="toPartnerFx" placeholder="To Partner FX">
+    </md-input-container>
+    <md-input-container *ngIf="fxChosen">
+      <input mdInput ngModel type="number" name="toOwnerFx" placeholder="To Owner FX">
+    </md-input-container >
+    <button md-button type="submit" *ngIf="step1">DEPLOY</button>
+  </form>
+  <div class="spinner" *ngIf="awaitingDeployment">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+  </div>
 </md-card>
