@@ -1,11 +1,20 @@
 .panel {
-  height: 65%;
+  //height: 65%;
   margin: 40px;
   display: block;
 }
 
 .schemeChosen {
   opacity: 0.4;
+}
+
+.section-1 {
+  height: 300px;
+}
+
+.section-2 {
+  float: left;
+  display: block;
 }
 
 .spinner {

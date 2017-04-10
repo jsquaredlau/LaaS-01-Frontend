@@ -2,15 +2,21 @@
   <md-sidenav #sidenav class="sidenav" mode="push" (close-start)="closeHamburger()  ">
 
     <md-card class="sidebar-header">
-      <md-card-title>BASYXLab</md-card-title>
-      <md-card-subtitle>Some shitty company</md-card-subtitle>
+      <!--<md-card-title>BASYXLab</md-card-title>-->
+      <!--<md-card-subtitle>Some shitty company</md-card-subtitle>-->
+      <md-select placeholder="Company Name" [(ngModel)]="selectedValue" (onClose)="onSelect(selectedValue)" ngModel="BASYXLab">
+        <md-option *ngFor="let business of businesses" [value]="business.value">
+          {{ business.viewValue }}
+        </md-option>
+      </md-select>
     </md-card>
 
     <md-card class="sidebar-content">
       <div class="btn-group">
-        <button [routerLink]="['/activated']" class="button button--pipaluk button--round-l button--text-thick button--text-upper">Active</button>
-        <button [routerLink]="['/deactivated']" class="button button--pipaluk button--round-l button--text-thick button--text-upper">De-active</button>
-        <button [routerLink]="['/requests']" class="button button--pipaluk button--round-l button--text-thick button--text-upper">Collaboration Requests</button>
+        <button [routerLink]="[selectedValue, 'activated']" class="button button--pipaluk button--round-l button--text-thick button--text-upper">Active</button>
+        <button [routerLink]="[selectedValue, 'deactivated']" class="button button--pipaluk button--round-l button--text-thick button--text-upper">De-active</button>
+        <button [routerLink]="[selectedValue, 'requests']" class="button button--pipaluk button--round-l button--text-thick button--text-upper">Collaboration Requests</button>
+        <button [routerLink]="[selectedValue, 'pending']" class="button button--pipaluk button--round-l button--text-thick button--text-upper">Pending Requests</button>
       </div>
     </md-card>
     <button md-raised-button class="logout-button">Logout</button>
@@ -28,4 +34,4 @@
 
 </md-sidenav-container>
 
-<button md-fab class="floating-button" [routerLink]="['/contract/setup']">+</button>
+<button md-fab class="floating-button" [routerLink]="[selectedValue, 'contract', 'setup']">+</button>

@@ -19,13 +19,15 @@ export class ContractService {
       'Accept': 'application/json'
     });
 
-    return this.awesomeHttpService.post(this.contractsUrl + '/' + 'BASYXLab' + '/' + 'vault' + '/' + form.schemeName + '/' + 'deploy', {
+    return this.awesomeHttpService.post(this.contractsUrl + '/' + form.owner + '/' + 'vault' + '/' + form.schemeName + '/' + 'deploy', {
+        schemeName: form.schemeName,
         description: form.description,
-        origin: form.origin,
-        token: form.tokenName,
-        region: form.region,
-        contractKey: form.contractKey,
-        accounts: form.accounts
+        token: form.tokenName
+        // origin: form.origin,
+        // token: form.tokenName,
+        // region: form.region,
+        // contractKey: form.contractKey,
+        // accounts: form.accounts
       }, {headers: headers})
       .map(res => res)
       .catch((error:any) => Observable.throw(error.error || 'Server error'));
@@ -39,20 +41,49 @@ export class ContractService {
 
     console.log(form.vaultAddress, form.partnerAddress, form.toPartnerX, form.toOwnerX);
 
-    return this.awesomeHttpService.post(this.contractsUrl + '/' + 'BASYXLab' + '/' + 'fx' + '/' + form.schemeName + '/' + 'deploy', {
-      owner: form.owner,
+    return this.awesomeHttpService.post(this.contractsUrl + '/' + form.owner + '/' + 'fx' + '/' + form.schemeName + '/' + 'deploy', {
+      requester: form.owner,
+      requestedPartner: form.requestedPartner,
+      schemeName: form.schemeName,
+      contractType: form.contractType,
       description: form.description,
-      origin: form.origin,
-      token: form.tokenName,
-      region: form.region,
-      contractKey: form.contractKey,
+      instructions: form.instructions,
+      requiredInputs: form.requiredInputs,
+      toPartnerFx: form.toPartnerFx,
+      toOwnerFx: form.toOwnerFx,
       vaultAddress: form.vaultAddress,
-      partnerAddress: form.partnerAddress,
-      toPartnerX: form.toPartnerFx,
-      toOwnerX: form.toOwnerFx,
+      // origin: form.origin,
+      // token: form.tokenName,
+      // region: form.region,
+      // contractKey: form.contractKey,
+      // partnerAddress: form.partnerAddress,
+
     }, {headers: headers})
       .map(res => res)
       .catch((error:any) => Observable.throw(error.error || 'Server error'));
   }
+
+  // public sendCollaborationRequest(form): Observable<any> {
+  //   const headers: Headers = new Headers({
+  //     'Content-Type': 'application/json',
+  //     'Accept': 'application/json'
+  //   });
+  //
+  //
+  //   return this.awesomeHttpService.post(this.contractsUrl + '/' + 'BASYXLab' + '/' + 'fx' + '/' + form.schemeName + '/' + 'deploy', {
+  //     provider: 'LaaS1',
+  //     partnerName: form.partnerName,
+  //     requestedPartner: form.requestedPartner,
+  //     schemeName: form.schemeName,
+  //     contractType: form.contractType,
+  //     contractAddress: form.contract,
+  //     description: ,
+  //     description: ,
+  //     instructions: ,
+  //     requiredInputs:
+  //   }, {headers: headers})
+  //     .map(res => res)
+  //     .catch((error:any) => Observable.throw(error.error || 'Server error'));
+  // }
 
 }

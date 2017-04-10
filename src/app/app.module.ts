@@ -17,18 +17,25 @@ import { ContractComponent } from './contract/contract/contract.component';
 import { ContractSetupComponent } from './panel/contract-setup/contract-setup.component';
 
 import { ContractService } from './shared/contract.service';
-import { AwesomeHttpModule, AwesomeHttpService } from 'ng2-awesome-http';
+import { AwesomeHttpModule } from 'ng2-awesome-http';
+import { LoginComponent } from './panel/login/login.component';
+import { PendingPanelComponent } from './panel/pending-panel/pending-panel.component';
+import { PendingDetailsPanelComponent } from './panel/pending-details-panel/pending-details-panel.component';
 
 const appRoutes: Routes = [
-  { path: '', component: PanelComponent },
-  { path: 'activated', component:  PanelComponent},
-  { path: 'deactivated', component:  DeactivePanelComponent},
-  { path: 'requests', component:  PanelComponent},
-  { path: 'activated/:scheme', component: ActiveDetailsPanelComponent},
-  { path: 'contract/setup', component: ContractSetupComponent}
+  { path: '', component: LoginComponent },
+  { path: ':business', redirectTo: ':business/activated', pathMatch: 'full' },
+  { path: ':business/activated', component:  PanelComponent },
+  { path: ':business/deactivated', component:  DeactivePanelComponent },
+  { path: ':business/requests', component:  PanelComponent },
+  { path: ':business/pending', component: PendingPanelComponent},
+  { path: ':business/activated/:scheme', component: ActiveDetailsPanelComponent },
+  { path: ':business/pending/:scheme', component: PendingDetailsPanelComponent },
+  { path: ':business/contract/setup', component: ContractSetupComponent }
+
 ];
 
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyBQNNPknNbL21FqtJLDbZpd9DvC3Nqudnk",
   authDomain: "laas-1.firebaseapp.com",
   databaseURL: "https://laas-1.firebaseio.com",
@@ -47,7 +54,10 @@ var firebaseConfig = {
     DeactivePanelComponent,
     ActiveDetailsPanelComponent,
     ContractComponent,
-    ContractSetupComponent
+    ContractSetupComponent,
+    LoginComponent,
+    PendingPanelComponent,
+    PendingDetailsPanelComponent
   ],
   imports: [
     BrowserModule,

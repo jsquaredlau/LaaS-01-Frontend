@@ -1,39 +1,49 @@
 <md-card class="panel">
   <md-input-container>
-    <input mdInput placeholder="Vault Name">
+    <input mdInput [(ngModel)]="vaultName" name="vaultName" placeholder="Vault Name">
   </md-input-container>
+
   <md-input-container>
-    <input mdInput placeholder="Token Name">
+    <input mdInput [(ngModel)]="tokenName" name="tokenName" placeholder="Token Name">
   </md-input-container>
+
+  <!--<md-input-container>-->
+    <!--<input mdInput [(ngModel)]="origin" name="Origin" placeholder="Origin">-->
+  <!--</md-input-container>-->
+
   <md-input-container>
-    <input mdInput placeholder="Origin">
+    <input mdInput [disabled]=true [(ngModel)]="creationDate" name="creationDate" placeholder="Creation Date">
   </md-input-container>
+
+  <!--<md-input-container [disabled]>-->
+    <!--<input mdInput [(ngModel)]="expirationDate" name="expirationDate" placeholder="Expiration Date">-->
+  <!--</md-input-container>-->
+
   <md-input-container>
-    <input mdInput placeholder="Creation Date">
+    <textarea mdInput placeholder="Description">{{description}}</textarea>
   </md-input-container>
+
   <md-input-container>
-    <input mdInput placeholder="Expiration Date">
+    <input mdInput [disabled]=true [(ngModel)]="region" name="region" placeholder="Region">
   </md-input-container>
-  <md-input-container>
-    <input mdInput placeholder="Description">
+  <!--<md-input-container>-->
+    <!--<input mdInput disabled placeholder="Contract Key">-->
+  <!--</md-input-container>-->
+  <!--<md-input-container *ngIf="isFx">-->
+    <!--<input mdInput [(ngModel)]="partnerVault" name="partnerVault" placeholder="Partner #1 Vault Location">-->
+  <!--</md-input-container>-->
+
+  <md-input-container *ngIf="isFx">
+    <input mdInput [disabled]=true [(ngModel)]="partnerName" name="partnerName" placeholder="Partner #1 Name">
   </md-input-container>
-  <md-input-container>
-    <input mdInput placeholder="Region">
+
+  <md-input-container type="number" *ngIf="isFx">
+    <input mdInput [disabled]=true [(ngModel)]="toPartnerFx" name="toPartnerFx" placeholder="You to Partner FX">
   </md-input-container>
-  <md-input-container>
-    <!--<input mdInput disabled placeholder="Contract Key"> can use [disabled] to control conditionally-->
+
+  <md-input-container type="number" *ngIf="isFx">
+    <input mdInput [disabled]=true [(ngModel)]="toOwnerFx" name="toOwnerFx" placeholder="Partner to You FX">
   </md-input-container>
-  <md-input-container>
-    <input mdInput placeholder="Partner #1 Vault Location">
-  </md-input-container>
-  <md-input-container>
-    <input mdInput placeholder="Partner #1 Name">
-  </md-input-container>
-  <md-input-container type="number">
-    <input mdInput placeholder="You to Partner FX">
-  </md-input-container>
-  <md-input-container type="number">
-    <input mdInput placeholder="Partner to You FX">
-  </md-input-container>
+
   <button md-raised-button>Update</button>
 </md-card>

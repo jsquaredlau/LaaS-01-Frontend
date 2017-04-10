@@ -1,38 +1,85 @@
 <md-card class="panel" [ngClass]="{'schemeChosen': awaitingDeployment}">
-  <form  #contractDetailsForm="ngForm" (ngSubmit)="deployContract(contractDetailsForm)">
-    <h1>Step 1 : Select Scheme Type</h1>
-    <app-card [title]="'Token'" (click)="schemeChosen('token')" [ngClass]="{'schemeChosen': !tokenChosen}"></app-card>
-    <app-card [title]="'FX'" (click)="schemeChosen('fx')" [ngClass]="{'schemeChosen': !fxChosen}"></app-card>
-    <app-card [title]="'Reward Mile'" (click)="schemeChosen('rewardMile')" [ngClass]="{'schemeChosen': !rewardMileChosen}"></app-card>
+  <form  #contractDetailsForm="ngForm" (ngSubmit)="deployContract(contractDetailsForm)" class="scheme-form">
+      <div class="section-1">
+        <h1>Step 1 : Select Scheme Type</h1>
+        <app-card [title]="'Token'" (click)="schemeChosen('token')" [ngClass]="{'schemeChosen': !tokenChosen}"></app-card>
+        <app-card [title]="'FX'" (click)="schemeChosen('fx')" [ngClass]="{'schemeChosen': !fxChosen}"></app-card>
+        <app-card [title]="'Reward Mile'" (click)="schemeChosen('rewardMile')" [ngClass]="{'schemeChosen': !rewardMileChosen}"></app-card>
+      </div>
+
     <h1 [ngClass]="{'schemeChosen': !step1}">Step 2 : Details</h1>
-    <md-input-container *ngIf="step1">
-      <input mdInput ngModel type="text" name="schemeName" placeholder="Scheme Name">
-    </md-input-container>
-    <md-input-container *ngIf="step1">
-      <textarea mdInput ngModel name="description" placeholder="Description"></textarea>
-    </md-input-container>
-    <md-input-container *ngIf="step1">
-      <input mdInput ngModel type="text" name="tokenName" placeholder="Token Name">
-    </md-input-container>
-    <md-input-container *ngIf="fxChosen">
-      <input mdInput ngModel type="text" name="ownerName" placeholder="Owner Name">
-    </md-input-container>
-    <md-input-container *ngIf="fxChosen">
-      <input mdInput ngModel type="text" name="vaultAddress" placeholder="Vault Address">
-    </md-input-container>
-    <md-input-container *ngIf="fxChosen">
-      <input mdInput ngModel type="text" name="partnerName" placeholder="Partner Name">
-    </md-input-container>
-    <md-input-container *ngIf="fxChosen">
-      <input mdInput ngModel type="text" name="partnerAddress" placeholder="Partner Address">
-    </md-input-container>
-    <md-input-container *ngIf="fxChosen">
-      <input mdInput ngModel type="number" name="toPartnerFx" placeholder="To Partner FX">
-    </md-input-container>
-    <md-input-container *ngIf="fxChosen">
-      <input mdInput ngModel type="number" name="toOwnerFx" placeholder="To Owner FX">
-    </md-input-container >
-    <button md-button type="submit" *ngIf="step1">DEPLOY</button>
+      <div class="section-2">
+
+        <div *ngIf="tokenChosen">
+          <md-input-container>
+            <input mdInput ngModel type="text" name="schemeName" placeholder="Scheme Name">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput ngModel type="text" name="description" placeholder="Description">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput ngModel type="text" name="tokenName" placeholder="Token Name">
+          </md-input-container>
+        </div>
+        <div *ngIf="fxChosen">
+          <md-input-container>
+            <input mdInput ngModel type="text" name="schemeName" placeholder="Scheme Name">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput ngModel type="text" name="requestedPartner" placeholder="Partner Name">
+          </md-input-container>
+          <md-input-container>
+            <textarea mdInput ngModel type="text" name="description" placeholder="Description"></textarea>
+          </md-input-container>
+          <md-input-container>
+            <textarea mdInput ngModel type="text" name="instructions" placeholder="Instructions"></textarea>
+          </md-input-container>
+          <md-input-container hintLabel="Use comma separated values">
+            <textarea mdInput ngModel type="text" name="requiredInputs" placeholder="Required Inputs"></textarea>
+          </md-input-container>
+          <md-input-container hintLabel="Yours : to theirs">
+            <input mdInput ngModel type="text" name="exchangeRate" placeholder="Exchange Rate">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput ngModel type="text" name="vaultAddress" placeholder="Vault Address">
+          </md-input-container>
+        </div>
+      </div>
+      <!--<md-input-container *ngIf="step1">-->
+        <!--<input mdInput ngModel type="text" name="schemeName" placeholder="Scheme Name">-->
+      <!--</md-input-container>-->
+      <!--<md-input-container *ngIf="step1">-->
+        <!--<textarea mdInput ngModel name="description" placeholder="Description"></textarea>-->
+      <!--</md-input-container>-->
+      <!--<md-input-container *ngIf="step1">-->
+        <!--<input mdInput ngModel type="text" name="tokenName" placeholder="Token Name">-->
+      <!--</md-input-container>-->
+      <!--<md-input-container *ngIf="fxChosen">-->
+        <!--<input mdInput ngModel type="text" name="ownerName" placeholder="Owner Name">-->
+      <!--</md-input-container>-->
+      <!--<md-input-container *ngIf="fxChosen">-->
+        <!--<input mdInput ngModel type="text" name="vaultAddress" placeholder="Vault Address">-->
+      <!--</md-input-container>-->
+      <!--<md-input-container *ngIf="fxChosen">-->
+        <!--<input mdInput ngModel type="text" name="requestedPartner" placeholder="Partner Name">-->
+      <!--</md-input-container>-->
+      <!--&lt;!&ndash;<md-input-container *ngIf="fxChosen">&ndash;&gt;-->
+      <!--&lt;!&ndash;<input mdInput ngModel type="text" name="partnerAddress" placeholder="Partner Address">&ndash;&gt;-->
+      <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
+      <!--<md-input-container *ngIf="fxChosen">-->
+        <!--<textarea mdInput ngModel type="text" name="instructions" placeholder="Instructions"></textarea>-->
+      <!--</md-input-container>-->
+      <!--<md-input-container *ngIf="fxChosen">-->
+        <!--<textarea mdInput ngModel type="text" name="requiredInputs" placeholder="Required Inputs"></textarea>-->
+      <!--</md-input-container>-->
+      <!--<md-input-container *ngIf="fxChosen">-->
+        <!--<input mdInput ngModel type="number" name="toPartnerFx" placeholder="To Partner FX">-->
+      <!--</md-input-container>-->
+      <!--<md-input-container *ngIf="fxChosen">-->
+        <!--<input mdInput ngModel type="number" name="toOwnerFx" placeholder="To Owner FX">-->
+      <!--</md-input-container >-->
+      <button md-button type="submit" *ngIf="step1">DEPLOY</button>
+
   </form>
   <div class="spinner" *ngIf="awaitingDeployment">
     <div class="dot1"></div>

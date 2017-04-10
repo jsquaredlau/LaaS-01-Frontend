@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-card',
@@ -7,12 +8,14 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  cardName: any;
-  constructor() { }
+  public cardName: any;
+  private businessName: string;
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   @Input() title: any;
 
   ngOnInit() {
+    this.businessName = this.route.snapshot.params['business'];
     if (this.title !== undefined){
       if (typeof this.title === 'string') {
         this.cardName = this.title;
@@ -22,9 +25,8 @@ export class CardComponent implements OnInit {
     }
   }
 
-  setTitle(title): void {
-    // this.title = title;
-    console.log(title);
+  public seeDetails(): void {
+    this.router.navigate([this.businessName + '/activated/' + this.cardName]);
   }
 
 }

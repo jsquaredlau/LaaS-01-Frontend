@@ -1,0 +1,29 @@
+<md-card class="panel">
+  <md-input-container>
+    <input mdInput [disabled]=true [(ngModel)]="schemeName" placeholder="Scheme Name">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [disabled]=true [(ngModel)]="requestedPartner" placeholder="Requested Partner">
+  </md-input-container>
+  <md-input-container>
+    <textarea mdInput [disabled]=true [(ngModel)]="description" placeholder="Scheme Description"></textarea>
+  </md-input-container>
+  <md-input-container>
+    <textarea mdInput [disabled]=true [(ngModel)]="instructions" placeholder="Collaboration Instructions"></textarea>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [disabled]=true [(ngModel)]="requiredInputs" placeholder="Required Inputs">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [disabled]=true [(ngModel)]="toPartnerFx" placeholder="To Partner Ratio">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [disabled]=true [(ngModel)]="toOwnerFx" placeholder="To Owner Ratio">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [disabled]=true [(ngModel)]="vaultAddress" placeholder="Owner's Vault Address">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [disabled]=true [(ngModel)]="status" placeholder="Collaboration Status">
+  </md-input-container>
+</md-card>
