@@ -1,0 +1,27 @@
+<md-card class="panel">
+  <form  #collaborationAcceptanceForm="ngForm" (ngSubmit)="acceptRequest(collaborationAcceptanceForm)" class="scheme-form">
+    <md-input-container>
+      <input mdInput [disabled]=true [(ngModel)]="schemeName" name="schemeName" placeholder="Scheme Name">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput [disabled]=true [(ngModel)]="contractType" name="contractType" placeholder="Contract Type">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput [disabled]=true [(ngModel)]="requester" name="requester" placeholder="Requesting Partner">
+    </md-input-container>
+    <md-input-container>
+      <textarea mdInput [disabled]=true [(ngModel)]="description" name="description" placeholder="Scheme Description"></textarea>
+    </md-input-container>
+    <md-input-container>
+      <textarea mdInput [disabled]=true [(ngModel)]="instructions" name="instructions" placeholder="Collaboration Instructions"></textarea>
+    </md-input-container>
+    <md-input-container *ngIf="isFx" hintLabel="Your : to Theirs">
+      <input mdInput [disabled]=true [(ngModel)]="fxRate" name="fxRate" placeholder="FX Rate">
+    </md-input-container>
+    <h2>Required Inputs</h2>
+    <md-input-container *ngFor="let input of requiredInputs">
+      <input mdInput ngModel [name]="input" [placeholder]="input">
+    </md-input-container>
+    <button md-button type="submit">ACCEPT</button>
+  </form>
+</md-card>

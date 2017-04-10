@@ -63,27 +63,22 @@ export class ContractService {
       .catch((error:any) => Observable.throw(error.error || 'Server error'));
   }
 
-  // public sendCollaborationRequest(form): Observable<any> {
-  //   const headers: Headers = new Headers({
-  //     'Content-Type': 'application/json',
-  //     'Accept': 'application/json'
-  //   });
-  //
-  //
-  //   return this.awesomeHttpService.post(this.contractsUrl + '/' + 'BASYXLab' + '/' + 'fx' + '/' + form.schemeName + '/' + 'deploy', {
-  //     provider: 'LaaS1',
-  //     partnerName: form.partnerName,
-  //     requestedPartner: form.requestedPartner,
-  //     schemeName: form.schemeName,
-  //     contractType: form.contractType,
-  //     contractAddress: form.contract,
-  //     description: ,
-  //     description: ,
-  //     instructions: ,
-  //     requiredInputs:
-  //   }, {headers: headers})
-  //     .map(res => res)
-  //     .catch((error:any) => Observable.throw(error.error || 'Server error'));
-  // }
+  public acceptCollaborationRequest(business: string, requester: string, contractType: string, schemeName: string, requiredInputs): Observable<any> {
+    const headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+    console.log(schemeName);
 
+    return this.awesomeHttpService.post(
+      this.contractsUrl + '/collaboration/' + business + '/accept/' + schemeName,
+      {
+        requester: requester,
+        contractType: contractType,
+        requiredInputs: requiredInputs,
+      },
+      {headers: headers})
+      .map(res => res)
+      .catch((error: any) => Observable.throw(error.error || 'Server error in accepting request'));
+  }
 }

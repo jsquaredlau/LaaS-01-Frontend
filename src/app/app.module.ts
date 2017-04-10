@@ -21,14 +21,17 @@ import { AwesomeHttpModule } from 'ng2-awesome-http';
 import { LoginComponent } from './panel/login/login.component';
 import { PendingPanelComponent } from './panel/pending-panel/pending-panel.component';
 import { PendingDetailsPanelComponent } from './panel/pending-details-panel/pending-details-panel.component';
+import { RequestsPanelComponent } from './panel/requests-panel/requests-panel.component';
+import { RequestsDetailsPanelComponent } from './panel/requests-details-panel/requests-details-panel.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: ':business', redirectTo: ':business/activated', pathMatch: 'full' },
   { path: ':business/activated', component:  PanelComponent },
   { path: ':business/deactivated', component:  DeactivePanelComponent },
-  { path: ':business/requests', component:  PanelComponent },
+  { path: ':business/requests', component:  RequestsPanelComponent },
   { path: ':business/pending', component: PendingPanelComponent},
+  { path: ':business/requests/:scheme', component: RequestsDetailsPanelComponent},
   { path: ':business/activated/:scheme', component: ActiveDetailsPanelComponent },
   { path: ':business/pending/:scheme', component: PendingDetailsPanelComponent },
   { path: ':business/contract/setup', component: ContractSetupComponent }
@@ -57,7 +60,9 @@ const firebaseConfig = {
     ContractSetupComponent,
     LoginComponent,
     PendingPanelComponent,
-    PendingDetailsPanelComponent
+    PendingDetailsPanelComponent,
+    RequestsPanelComponent,
+    RequestsDetailsPanelComponent
   ],
   imports: [
     BrowserModule,
