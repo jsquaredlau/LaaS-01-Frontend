@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FirebaseObjectObservable, AngularFire} from "angularfire2";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
 import {ContractService} from "../../shared/contract.service";
 import {MdSnackBar} from "@angular/material";
@@ -70,5 +70,4 @@ export class RequestsDetailsPanelComponent implements OnInit {
         }
       );
   }
-
 }

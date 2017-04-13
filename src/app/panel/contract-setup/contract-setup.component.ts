@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ContractService } from '../../shared/contract.service';
-import {MdSnackBar} from '@angular/material';
-import {ActivatedRoute} from "@angular/router";
+import { MdSnackBar } from '@angular/material';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-contract-setup',
@@ -86,7 +86,7 @@ export class ContractSetupComponent implements OnInit {
       this.contractService.deployFx(form.value)
         .subscribe(
           () => {
-            this.snackBar.open('Fx with ' + form.value['partnerName'] + ' deployed', 'dismiss', {duration:2000});
+            this.snackBar.open('Fx with ' + form.value['requestedPartner'] + ' deployed', 'dismiss', {duration:2000});
             this.awaitingDeployment = false;
           },
           err => {

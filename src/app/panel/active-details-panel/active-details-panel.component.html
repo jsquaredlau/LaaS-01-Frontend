@@ -44,6 +44,9 @@
   <md-input-container type="number" *ngIf="isFx">
     <input mdInput [disabled]=true [(ngModel)]="toOwnerFx" name="toOwnerFx" placeholder="Partner to You FX">
   </md-input-container>
-
   <button md-raised-button>Update</button>
+
+  <h2 *ngIf="isFx">Don't like the arrangement?</h2>
+  <button md-button type="button" (click)="nullifyContract()" *ngIf="isFx">REJECT</button>
+
 </md-card>

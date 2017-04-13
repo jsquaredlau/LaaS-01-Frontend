@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {HttpModule, JsonpModule} from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from "@angular/router";
 
@@ -72,7 +72,8 @@ const firebaseConfig = {
     MaterialModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig),
-    AwesomeHttpModule
+    // AwesomeHttpModule,
+    JsonpModule
   ],
   entryComponents: [
     ContractComponent
