@@ -14,6 +14,7 @@ export class PendingDetailsPanelComponent implements OnInit {
   public item: FirebaseObjectObservable<any>;
 
   public isFx: boolean;
+  public isRewardMile: boolean;
   public schemeName: string;
   public requestedPartner: string;
   public contractType: string;
@@ -25,6 +26,7 @@ export class PendingDetailsPanelComponent implements OnInit {
   public creationDate: number;
   public status: string;
   public vaultAddress: string;
+  public partners: any;
 
   constructor(private route: ActivatedRoute, private af: AngularFire) {}
 
@@ -46,7 +48,15 @@ export class PendingDetailsPanelComponent implements OnInit {
         this.creationDate = result.creationDate;
         this.status = result.status;
         this.vaultAddress = result.vaultAddress;
+      } else if (result.contractType === 'rewardMile') {
+        this.isRewardMile = true;
+        this.description = result.description;
+        this.instructions = result.instructions;
+        this.requiredInputs = result.requiredInputs.replace(',', '\n');
+        this.partners = result.partners;
+        this.status = result.status;
       }
+
     });
 
   }

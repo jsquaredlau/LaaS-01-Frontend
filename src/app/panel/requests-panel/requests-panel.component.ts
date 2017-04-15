@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class RequestsPanelComponent implements OnInit {
 
+  private schemes: FirebaseListObservable<any>;
   public items: FirebaseListObservable<any>;
   private businessName: string;
 
