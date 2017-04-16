@@ -60,7 +60,7 @@ export class ContractService {
   //   console.log(form.vaultAddress, form.partnerAddress, form.toPartnerX, form.toOwnerX);
   //
   //   return this.awesomeHttpService.post(this.contractsUrl + '/' + form.owner + '/' + 'fx' + '/' + form.schemeName + '/' + 'deploy', {
-  //     requester: form.owner,
+  //     owner: form.owner,
   //     requestedPartner: form.requestedPartner,
   //     schemeName: form.schemeName,
   //     contractType: form.contractType,
@@ -89,7 +89,7 @@ export class ContractService {
       .post(
         this.contractsUrl + '/' + form.owner + '/' + 'fx' + '/' + form.schemeName + '/' + 'deploy',
         {
-          requester: form.owner,
+          owner: form.owner,
           requestedPartner: form.requestedPartner,
           schemeName: form.schemeName,
           contractType: form.contractType,
@@ -107,7 +107,7 @@ export class ContractService {
   }
 
   //
-  // public acceptCollaborationRequest(business: string, requester: string, contractType: string, schemeName: string, requiredInputs): Observable<any> {
+  // public acceptCollaborationRequest(business: string, owner: string, contractType: string, schemeName: string, requiredInputs): Observable<any> {
   //   const headers: Headers = new Headers({
   //     'Content-Type': 'application/json',
   //     'Accept': 'application/json'
@@ -117,7 +117,7 @@ export class ContractService {
   //   return this.awesomeHttpService.post(
   //     this.contractsUrl + '/collaboration/' + business + '/accept/' + schemeName,
   //     {
-  //       requester: requester,
+  //       owner: owner,
   //       contractType: contractType,
   //       requiredInputs: requiredInputs,
   //     },
@@ -126,17 +126,24 @@ export class ContractService {
   //     .catch((error: any) => Observable.throw(error.error || 'Server error in accepting request'));
   // }
 
-  public acceptCollaborationRequest(business: string, requester: string, contractType: string, schemeName: string, requiredInputs): Observable<any> {
+  public deployRewardMile(form): Observable<any> {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions(({headers: headers}));
-
+    console.log(form);
     return this.http
       .post(
-        this.contractsUrl + '/collaboration/' + business + '/accept/' + schemeName,
+        this.contractsUrl + '/' + form.owner + '/' + 'rewardMile' + '/' + form.schemeName + '/' + 'deploy',
         {
-          requester: requester,
-          contractType: contractType,
-          requiredInputs: requiredInputs,
+          owner: form.owner,
+          requestedPartner: form.requestedPartner,
+          schemeName: form.schemeName,
+          contractType: form.contractType,
+          description: form.description,
+          instructions: form.instructions,
+          requiredInputs: form.requiredInputs,
+          vaultAddress: form.vaultAddress,
+          ownerRewardAllocation: form.ownerRewardAllocation,
+          partners: form.partners
         },
         options
       )
@@ -144,7 +151,25 @@ export class ContractService {
       .catch(this.handleError);
   }
 
-  public rejectCollaborationRequest(business: string, requester: string, contractType: string, schemeName: string): Observable<any> {
+  public acceptCollaborationRequest(business: string, contractOwner: string, contractType: string, schemeName: string, contractRequiredInputs): Observable<any> {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions(({headers: headers}));
+    console.log(contractType);
+    return this.http
+      .post(
+        this.contractsUrl + '/collaboration/' + business + '/accept/' + schemeName,
+        {
+          owner: contractOwner,
+          contractType: contractType,
+          requiredInputs: contractRequiredInputs,
+        },
+        options
+      )
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public rejectCollaborationRequest(business: string, contractType: string, schemeName: string): Observable<any> {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions(({headers: headers}));
 
@@ -152,7 +177,6 @@ export class ContractService {
       .post(
         this.contractsUrl + '/collaboration/' + business + '/reject/' + schemeName,
         {
-          requester: requester,
           contractType: contractType,
         },
         options

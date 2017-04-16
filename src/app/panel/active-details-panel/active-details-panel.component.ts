@@ -11,25 +11,29 @@ import {ContractService} from "../../shared/contract.service";
 })
 export class ActiveDetailsPanelComponent implements OnInit, OnDestroy {
 
-  id: string;
-  private sub: any;
   private businessName: string;
   private schemeName: string;
+  private awaitingResponse: boolean;
   public item: FirebaseObjectObservable<any>;
-  public isFx: boolean;
-  public vaultName: string;
-  public tokenName: string;
-  public origin: string;
+
+  public isVault: boolean;
   public creationDate: string;
-  public expirationDate: string;
+  public vaultName: string;
+  public token: string;
+
+  public provider: string;
+  public owner: string;
   public description: string;
-  public region: string;
-  public partnerVault: string;
-  public requester: string;
+  public instructions: string;
+  public contractType: string;
+
+  public isFx: boolean;
   public toPartnerFx: number;
   public toOwnerFx: number;
-  public contractType: string;
-  private awaitingResponse: boolean;
+
+  public isRewardMile: boolean;
+  public partners: boolean;
+
 
   constructor(private route: ActivatedRoute,
               private af: AngularFire,
@@ -44,35 +48,37 @@ export class ActiveDetailsPanelComponent implements OnInit, OnDestroy {
     this.schemeName = this.route.snapshot.params['scheme'];
     this.item = this.af.database.object('/schemes/' + this.businessName + '/' + this.schemeName);
     this.item.subscribe( result => {
-      if (result.contractType === 'fx') {
-        this.isFx = true;
-        this.requester = result.requester;
-      }
-
       this.contractType = result.contractType;
-      this.vaultName = this.schemeName;
-      this.tokenName = result.token;
-      this.origin = result.origin;
-      this.creationDate = result.creationDate;
       this.description = result.description;
-      this.region = result.region;
-
+      if (result.contractType === 'vault'){
+        this.isVault = true;
+        this.token = result.token;
+        this.creationDate = result.creationDate;
+      } else {
+        this.provider = result.provider;
+        this.owner = result.owner;
+        this.instructions = result.instructions;
+        this.contractType = result.contractType;
+        if (result.contractType === 'fx'){
+          this.isFx = true;
+          this.toPartnerFx = result.toPartnerFx;
+          this.toOwnerFx = result.toOwnerFx;
+        } else if (result.contractType === 'rewardMile'){
+          this.isRewardMile = true;
+          this.partners = result.partners;
+        }
+      }
       console.log(result);
     });
-
-    // this.sub = this.route.params.subscribe(params => {
-    //   this.id = params['scheme'];
-    //   console.log(this.id);
-    // });
   }
 
   public nullifyContract(): void {
     this.awaitingResponse = true;
-    this.contractService.rejectCollaborationRequest(this.businessName, this.requester, this.contractType, this.schemeName.replace('%20', ' '))
+    this.contractService.rejectCollaborationRequest(this.businessName, this.contractType, this.schemeName.replace('%20', ' '))
       .subscribe(
         (result) => {
           console.log(result);
-          this.snackBar.open('Collab with ' + this.requester + ' has been voided', 'dismiss', {duration:2000});
+          this.snackBar.open('Collab with ' + this.owner + ' has been voided', 'dismiss', {duration:2000});
           this.awaitingResponse = false;
           this.router.navigate([this.businessName + '/activated']);
         },

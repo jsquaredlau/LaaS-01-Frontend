@@ -52,7 +52,7 @@ export class PendingDetailsPanelComponent implements OnInit {
         this.isRewardMile = true;
         this.description = result.description;
         this.instructions = result.instructions;
-        this.requiredInputs = result.requiredInputs.replace(',', '\n');
+        this.requiredInputs = result.requiredInputs;
         this.partners = result.partners;
         this.status = result.status;
       }

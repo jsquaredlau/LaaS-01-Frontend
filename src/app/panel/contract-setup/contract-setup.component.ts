@@ -59,10 +59,6 @@ export class ContractSetupComponent implements OnInit {
     console.log(form.value);
     this.awaitingDeployment = true;
     form.value['owner'] = this.business;
-    // form.value['region'] = 'JPN';
-    // form.value['origin'] = 'LaaS1';
-    // form.value['contractKey'] = 0;
-    // form.value['accounts'] = [];
     if (this.tokenChosen) {
       this.contractService.deployVault(form.value)
         .subscribe(
@@ -82,7 +78,6 @@ export class ContractSetupComponent implements OnInit {
       form.value['toPartnerFx'] = parseInt(exchangeRates[1]);
       form.value['toOwnerFx'] = parseInt(exchangeRates[0]);
       form.value['requiredInputs'] = form.value['requiredInputs'].split(',');
-
       this.contractService.deployFx(form.value)
         .subscribe(
           () => {
@@ -95,9 +90,23 @@ export class ContractSetupComponent implements OnInit {
             this.awaitingDeployment = false;
           }
         );
-    }// else if (this.rewardMileChosen){
-    //  form.value['contractType'] = 'rewardMile';
-    //}
+    } else if (this.rewardMileChosen){
+      form.value['contractType'] = 'rewardMile';
+      form.value['requiredInputs'] = form.value['requiredInputs'].split(',');
+      form.value['partners'] = form.value['partners'].split(',');
+      this.contractService.deployRewardMile(form.value)
+        .subscribe(
+          () => {
+            this.snackBar.open('Reward Mile with ' + form.value['partners'] + ' deployed', 'dismiss', {duration:2000});
+            this.awaitingDeployment = false;
+          },
+          err => {
+            console.log(err);
+            this.snackBar.open('It failed :(', 'dismiss', {duration:1000});
+            this.awaitingDeployment = false;
+          }
+        );
+    }
 
     return;
   }

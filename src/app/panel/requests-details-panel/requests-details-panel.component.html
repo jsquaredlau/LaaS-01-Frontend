@@ -1,5 +1,27 @@
 <md-card class="panel">
   <form  #collaborationAcceptanceForm="ngForm" (ngSubmit)="acceptRequest(collaborationAcceptanceForm)" class="scheme-form">
+    <!--<md-input-container>-->
+      <!--<input mdInput [disabled]=true [(ngModel)]="schemeName" name="schemeName" placeholder="Scheme Name">-->
+    <!--</md-input-container>-->
+    <!--<md-input-container>-->
+      <!--<input mdInput [disabled]=true [(ngModel)]="contractType" name="contractType" placeholder="Contract Type">-->
+    <!--</md-input-container>-->
+    <!--<md-input-container>-->
+      <!--<input mdInput [disabled]=true [(ngModel)]="owner" name="owner" placeholder="Requesting Partner">-->
+    <!--</md-input-container>-->
+    <!--<md-input-container>-->
+      <!--<textarea mdInput [disabled]=true [(ngModel)]="description" name="description" placeholder="Scheme Description"></textarea>-->
+    <!--</md-input-container>-->
+    <!--<md-input-container>-->
+      <!--<textarea mdInput [disabled]=true [(ngModel)]="instructions" name="instructions" placeholder="Collaboration Instructions"></textarea>-->
+    <!--</md-input-container>-->
+    <!--<md-input-container *ngIf="isFx" hintLabel="Your : to Theirs">-->
+      <!--<input mdInput [disabled]=true [(ngModel)]="fxRate" name="fxRate" placeholder="FX Rate">-->
+    <!--</md-input-container>-->
+    <!--<h2>Required Inputs</h2>-->
+    <!--<md-input-container *ngFor="let input of requiredInputs">-->
+      <!--<input mdInput ngModel [name]="input" [placeholder]="input">-->
+    <!--</md-input-container>-->
     <md-input-container>
       <input mdInput [disabled]=true [(ngModel)]="schemeName" name="schemeName" placeholder="Scheme Name">
     </md-input-container>
@@ -7,17 +29,27 @@
       <input mdInput [disabled]=true [(ngModel)]="contractType" name="contractType" placeholder="Contract Type">
     </md-input-container>
     <md-input-container>
-      <input mdInput [disabled]=true [(ngModel)]="requester" name="requester" placeholder="Requesting Partner">
+      <input mdInput [disabled]=true [(ngModel)]="provider" name="provider" placeholder="Service Provider">
     </md-input-container>
     <md-input-container>
-      <textarea mdInput [disabled]=true [(ngModel)]="description" name="description" placeholder="Scheme Description"></textarea>
+      <input mdInput [disabled]=true [(ngModel)]="owner" name="owner" placeholder="Contract Owner">
     </md-input-container>
     <md-input-container>
-      <textarea mdInput [disabled]=true [(ngModel)]="instructions" name="instructions" placeholder="Collaboration Instructions"></textarea>
+      <textarea mdInput [disabled]=true [(ngModel)]="description" name="description" placeholder="Description"></textarea>
     </md-input-container>
-    <md-input-container *ngIf="isFx" hintLabel="Your : to Theirs">
-      <input mdInput [disabled]=true [(ngModel)]="fxRate" name="fxRate" placeholder="FX Rate">
+    <md-input-container>
+      <textarea mdInput [disabled]=true [(ngModel)]="instructions" name="instructions" placeholder="Instructions"></textarea>
     </md-input-container>
+    <div *ngIf="isFx">
+      <md-input-container hintLabel="Your : to Theirs">
+        <input mdInput [disabled]=true [(ngModel)]="fxRate" name="fxRate" placeholder="FX Rate">
+      </md-input-container>
+    </div>
+    <div *ngIf="isRewardMile">
+      <md-input-container>
+        <textarea mdInput [(ngModel)]="partners" name="partners" placeholder="Contract Partners"></textarea>
+      </md-input-container>
+    </div>
     <h2>Required Inputs</h2>
     <md-input-container *ngFor="let input of requiredInputs">
       <input mdInput ngModel [name]="input" [placeholder]="input">

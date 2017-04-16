@@ -45,6 +45,30 @@
           </md-input-container>
         </div>
       </div>
+      <div *ngIf="rewardMileChosen">
+        <md-input-container>
+          <input mdInput ngModel type="text" name="schemeName" placeholder="Scheme Name">
+        </md-input-container>
+        <md-input-container hintLabel="Separate names with commas">
+          <textarea mdInput ngModel type="text" name="partners" placeholder="Who are your partners?"></textarea>
+        </md-input-container>
+        <md-input-container>
+          <textarea mdInput ngModel type="text" name="description" placeholder="Description"></textarea>
+        </md-input-container>
+        <md-input-container>
+          <textarea mdInput ngModel type="text" name="instructions" placeholder="Instructions"></textarea>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput ngModel type="number" name="ownerRewardAllocation" placeholder="Your reward allocation">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput ngModel type="text" name="vaultAddress" placeholder="Vault Address">
+        </md-input-container>
+        <h2>The required inputs from your partners?</h2>
+        <md-input-container hintLabel="Use comma separated values">
+          <textarea mdInput ngModel type="text" name="requiredInputs" placeholder="Required Inputs"></textarea>
+        </md-input-container>
+      </div>
       <!--<md-input-container *ngIf="step1">-->
         <!--<input mdInput ngModel type="text" name="schemeName" placeholder="Scheme Name">-->
       <!--</md-input-container>-->
