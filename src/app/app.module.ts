@@ -17,7 +17,6 @@ import { ContractComponent } from './contract/contract/contract.component';
 import { ContractSetupComponent } from './panel/contract-setup/contract-setup.component';
 
 import { ContractService } from './shared/contract.service';
-import { AwesomeHttpModule } from 'ng2-awesome-http';
 import { LoginComponent } from './panel/login/login.component';
 import { PendingPanelComponent } from './panel/pending-panel/pending-panel.component';
 import { PendingDetailsPanelComponent } from './panel/pending-details-panel/pending-details-panel.component';
@@ -72,7 +71,6 @@ const firebaseConfig = {
     MaterialModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig),
-    // AwesomeHttpModule,
     JsonpModule
   ],
   entryComponents: [
