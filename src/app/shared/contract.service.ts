@@ -9,6 +9,8 @@ import { Headers, RequestOptions, Response, Http } from "@angular/http";
 export class ContractService {
 
   private contractsUrl = 'http://localhost:3000/api/v1/business';
+  // private contractsUrl = 'http://localhost:8080/api/v1/business';
+  // private contractsUrl = 'http://jsquared.ga/api/v1/business';
 
 
   constructor (private http: Http) {}
@@ -36,7 +38,7 @@ export class ContractService {
   public deployVault(form): Observable<any> {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions(({headers: headers}));
-
+  console.log(this.contractsUrl + '/' + form.owner + '/' + 'vault' + '/' + form.schemeName + '/' + 'deploy');
     return this.http
       .post(
         this.contractsUrl + '/' + form.owner + '/' + 'vault' + '/' + form.schemeName + '/' + 'deploy',
