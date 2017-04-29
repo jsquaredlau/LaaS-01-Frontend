@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-// import { AwesomeHttpService } from 'ng2-awesome-http';
 import { Observable } from "rxjs";
 import { Headers, RequestOptions, Response, Http } from "@angular/http";
+import { environment } from '../../environments/environment';
 
 
 
 @Injectable()
 export class ContractService {
 
-  private contractsUrl = 'http://localhost:3000/api/v1/business';
+  // private contractsUrl = 'http://localhost:3000/api/v1/business';
   // private contractsUrl = 'http://localhost:8080/api/v1/business';
-  // private contractsUrl = 'http://jsquared.ga/api/v1/business';
+  private contractsUrl = environment.apiUrl + '/api/v1/business';
 
 
   constructor (private http: Http) {}
