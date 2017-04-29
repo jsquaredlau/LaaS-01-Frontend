@@ -11,12 +11,12 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ContractSetupComponent implements OnInit {
 
-  private tokenChosen: boolean;
-  private fxChosen: boolean;
-  private rewardMileChosen: boolean;
-  private step1: boolean;
-  private awaitingDeployment: boolean;
-  private business: string;
+  public tokenChosen: boolean;
+  public fxChosen: boolean;
+  public rewardMileChosen: boolean;
+  public step1: boolean;
+  public awaitingDeployment: boolean;
+  public business: string;
 
   constructor(private contractService: ContractService, public snackBar: MdSnackBar, private route: ActivatedRoute) {}
 
