@@ -10,7 +10,7 @@ export class ContractService {
 
   // private contractsUrl = 'http://localhost:3000/api/v1/business';
   // private contractsUrl = 'http://localhost:8080/api/v1/business';
-  private contractsUrl = environment.apiUrl + '/api/v1/business';
+  private contractsUrl = environment.apiUrl + 'business';
 
 
   constructor (private http: Http) {}
