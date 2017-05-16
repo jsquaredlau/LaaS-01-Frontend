@@ -16,85 +16,44 @@
   </div>
   <div *ngIf="isFx || isRewardMile">
     <md-input-container>
-      <input mdInput [(ngModel)]="schemeName" name="schemeName" placeholder="Scheme Name">
+      <input mdInput [(ngModel)]="schemeName" name="schemeName" placeholder="Scheme Name" disabled>
     </md-input-container>
     <md-input-container>
-      <input mdInput [(ngModel)]="contractType" name="contractType" placeholder="Contract Type">
+      <input mdInput [(ngModel)]="contractType" name="contractType" placeholder="Contract Type" disabled>
     </md-input-container>
     <md-input-container>
-      <input mdInput [(ngModel)]="provider" name="provider" placeholder="Service Provider">
+      <input mdInput [(ngModel)]="provider" name="provider" placeholder="Service Provider" disabled>
     </md-input-container>
     <md-input-container>
-      <input mdInput [(ngModel)]="owner" name="owner" placeholder="Contract Owner">
+      <input mdInput [(ngModel)]="owner" name="owner" placeholder="Contract Owner" disabled>
     </md-input-container>
     <md-input-container>
-      <textarea mdInput [(ngModel)]="description" name="description" placeholder="Description">
+      <textarea mdInput [(ngModel)]="description" name="description" placeholder="Description" disabled>
     </md-input-container>
     <md-input-container>
-      <textarea mdInput [(ngModel)]="instructions" name="instructions" placeholder="Instructions"></textarea>
+      <textarea mdInput [(ngModel)]="instructions" name="instructions" placeholder="Instructions" disabled></textarea>
     </md-input-container>
     <div *ngIf="isFx">
       <md-input-container type="number">
-        <input mdInput [disabled]=true [(ngModel)]="toPartnerFx" name="toPartnerFx" placeholder="You to Partner FX">
+        <input mdInput [disabled]=true [(ngModel)]="toPartnerFx" name="toPartnerFx" placeholder="You to Partner FX" disabled>
       </md-input-container>
       <md-input-container type="number">
-        <input mdInput [disabled]=true [(ngModel)]="toOwnerFx" name="toOwnerFx" placeholder="Partner to You FX">
+        <input mdInput [disabled]=true [(ngModel)]="toOwnerFx" name="toOwnerFx" placeholder="Partner to You FX" disabled>
       </md-input-container>
     </div>
     <div *ngIf="isRewardMile">
       <md-input-container>
-        <textarea mdInput [(ngModel)]="partners" name="partners" placeholder="Contract Partners"></textarea>
+        <textarea mdInput [(ngModel)]="partners" name="partners" placeholder="Contract Partners" disabled></textarea>
       </md-input-container>
     </div>
   </div>
-  <!--<md-input-container>-->
-    <!--<input mdInput [(ngModel)]="vaultName" name="vaultName" placeholder="Vault Name">-->
-  <!--</md-input-container>-->
-
-  <!--<md-input-container>-->
-    <!--<input mdInput [(ngModel)]="tokenName" name="tokenName" placeholder="Token Name">-->
-  <!--</md-input-container>-->
-
-  <!--&lt;!&ndash;<md-input-container>&ndash;&gt;-->
-    <!--&lt;!&ndash;<input mdInput [(ngModel)]="origin" name="Origin" placeholder="Origin">&ndash;&gt;-->
-  <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
-
-  <!--<md-input-container>-->
-    <!--<input mdInput [disabled]=true [(ngModel)]="creationDate" name="creationDate" placeholder="Creation Date">-->
-  <!--</md-input-container>-->
-
-  <!--&lt;!&ndash;<md-input-container [disabled]>&ndash;&gt;-->
-    <!--&lt;!&ndash;<input mdInput [(ngModel)]="expirationDate" name="expirationDate" placeholder="Expiration Date">&ndash;&gt;-->
-  <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
-
-  <!--<md-input-container>-->
-    <!--<textarea mdInput placeholder="Description">{{description}}</textarea>-->
-  <!--</md-input-container>-->
-
-  <!--<md-input-container>-->
-    <!--<input mdInput [disabled]=true [(ngModel)]="region" name="region" placeholder="Region">-->
-  <!--</md-input-container>-->
-  <!--&lt;!&ndash;<md-input-container>&ndash;&gt;-->
-    <!--&lt;!&ndash;<input mdInput disabled placeholder="Contract Key">&ndash;&gt;-->
-  <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
-  <!--&lt;!&ndash;<md-input-container *ngIf="isFx">&ndash;&gt;-->
-    <!--&lt;!&ndash;<input mdInput [(ngModel)]="partnerVault" name="partnerVault" placeholder="Partner #1 Vault Location">&ndash;&gt;-->
-  <!--&lt;!&ndash;</md-input-container>&ndash;&gt;-->
-
-  <!--<md-input-container *ngIf="isFx">-->
-    <!--<input mdInput [disabled]=true [(ngModel)]="partnerName" name="partnerName" placeholder="Partner #1 Name">-->
-  <!--</md-input-container>-->
-
-  <!--<md-input-container type="number" *ngIf="isFx">-->
-    <!--<input mdInput [disabled]=true [(ngModel)]="toPartnerFx" name="toPartnerFx" placeholder="You to Partner FX">-->
-  <!--</md-input-container>-->
-
-  <!--<md-input-container type="number" *ngIf="isFx">-->
-    <!--<input mdInput [disabled]=true [(ngModel)]="toOwnerFx" name="toOwnerFx" placeholder="Partner to You FX">-->
-  <!--</md-input-container>-->
-  <!--<button md-raised-button>Update</button>-->
-
   <h2 *ngIf="!isVault">Don't like the arrangement?</h2>
-  <button md-button type="button" (click)="nullifyContract()" *ngIf="isFx">REJECT</button>
+  <button *ngIf="(isFx || isRewardMile) && !isOwner" md-button type="button" (click)="nullifyContract()">REJECT</button>
+  <button *ngIf="isOwner" md-button type="button" (click)="destroyContract()">TERMINATE</button>
+
+  <div class="spinner" *ngIf="awaitingDeployment">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+  </div>
 
 </md-card>
