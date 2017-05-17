@@ -45,7 +45,7 @@ export class ActiveDetailsPanelComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.awaitingResponse = false;
-    this.businessName = this.route.snapshot.params['business'];
+    this.businessName = this.route.snapshot.params['business'].replace('%20', ' ');
     this.schemeName = this.route.snapshot.params['scheme'];
     this.partners = [];
     this.isOwner = false;

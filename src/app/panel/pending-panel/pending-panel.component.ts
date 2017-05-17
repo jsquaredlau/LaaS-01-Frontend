@@ -15,9 +15,9 @@ export class PendingPanelComponent implements OnInit {
   constructor(private af: AngularFire, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.businessName = this.route.snapshot.params['business'];
+    this.businessName = this.route.snapshot.params['business'].replace('%20', ' ');
     this.items = this.af.database.list('/businesses/' + this.businessName + '/pendingSchemes');
-    this.items.subscribe( result => {
+    this.items.subscribe(result => {
       console.log(result);
     });
   }

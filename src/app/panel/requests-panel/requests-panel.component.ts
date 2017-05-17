@@ -13,12 +13,12 @@ export class RequestsPanelComponent implements OnInit {
   public items: FirebaseListObservable<any>;
   private businessName: string;
 
-  constructor(private af: AngularFire, private route: ActivatedRoute, private router: Router) {}
+  constructor(private af: AngularFire, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.businessName = this.route.snapshot.params['business'];
+    this.businessName = this.route.snapshot.params['business'].replace('%20', ' ');
     this.items = this.af.database.list('/businesses/' + this.businessName + '/collaborationRequests');
-    this.items.subscribe( result => {
+    this.items.subscribe(result => {
       console.log(result);
     });
   }

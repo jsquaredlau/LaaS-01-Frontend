@@ -28,10 +28,10 @@ export class PendingDetailsPanelComponent implements OnInit {
   public vaultAddress: string;
   public partners: any;
 
-  constructor(private route: ActivatedRoute, private af: AngularFire) {}
+  constructor(private route: ActivatedRoute, private af: AngularFire) { }
 
   ngOnInit() {
-    this.businessName = this.route.snapshot.params['business'];
+    this.businessName = this.route.snapshot.params['business'].replace('%20', ' ');
     this.schemeName = this.route.snapshot.params['scheme'];
 
     this.item = this.af.database.object('/schemes/' + this.businessName + '/' + this.schemeName);

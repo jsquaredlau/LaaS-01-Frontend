@@ -18,7 +18,7 @@ export class ContractSetupComponent implements OnInit {
   public awaitingDeployment: boolean;
   public business: string;
 
-  constructor(private contractService: ContractService, public snackBar: MdSnackBar, private route: ActivatedRoute) {}
+  constructor(private contractService: ContractService, public snackBar: MdSnackBar, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.tokenChosen = false;
@@ -26,11 +26,11 @@ export class ContractSetupComponent implements OnInit {
     this.rewardMileChosen = false;
     this.step1 = false;
     this.awaitingDeployment = false;
-    this.business = this.route.snapshot.params['business'];
+    this.business = this.route.snapshot.params['business'].replace('%20', ' ');
   }
 
   public schemeChosen(scheme: string): void {
-    switch(scheme) {
+    switch (scheme) {
       case 'token':
         this.tokenChosen = true;
         this.fxChosen = false;
@@ -62,15 +62,15 @@ export class ContractSetupComponent implements OnInit {
     if (this.tokenChosen) {
       this.contractService.deployVault(form.value)
         .subscribe(
-          () => {
-            this.snackBar.open('Vault Successfully Deployed', 'dismiss', {duration:2000});
-            this.awaitingDeployment = false;
-          },
-          err => {
-            console.log(err);
-            this.snackBar.open('It failed :(', 'dismiss', {duration:1000});
-            this.awaitingDeployment = false;
-          }
+        () => {
+          this.snackBar.open('Vault Successfully Deployed', 'dismiss', { duration: 2000 });
+          this.awaitingDeployment = false;
+        },
+        err => {
+          console.log(err);
+          this.snackBar.open('It failed :(', 'dismiss', { duration: 1000 });
+          this.awaitingDeployment = false;
+        }
         );
     } else if (this.fxChosen) {
       form.value['contractType'] = 'fx';
@@ -80,31 +80,31 @@ export class ContractSetupComponent implements OnInit {
       form.value['requiredInputs'] = form.value['requiredInputs'].split(',');
       this.contractService.deployFx(form.value)
         .subscribe(
-          () => {
-            this.snackBar.open('Fx with ' + form.value['requestedPartner'] + ' deployed', 'dismiss', {duration:2000});
-            this.awaitingDeployment = false;
-          },
-          err => {
-            console.log(err);
-            this.snackBar.open('It failed :(', 'dismiss', {duration:1000});
-            this.awaitingDeployment = false;
-          }
+        () => {
+          this.snackBar.open('Fx with ' + form.value['requestedPartner'] + ' deployed', 'dismiss', { duration: 2000 });
+          this.awaitingDeployment = false;
+        },
+        err => {
+          console.log(err);
+          this.snackBar.open('It failed :(', 'dismiss', { duration: 1000 });
+          this.awaitingDeployment = false;
+        }
         );
-    } else if (this.rewardMileChosen){
+    } else if (this.rewardMileChosen) {
       form.value['contractType'] = 'rewardMile';
       form.value['requiredInputs'] = form.value['requiredInputs'].split(',');
       form.value['partners'] = form.value['partners'].split(',');
       this.contractService.deployRewardMile(form.value)
         .subscribe(
-          () => {
-            this.snackBar.open('Reward Mile with ' + form.value['partners'] + ' deployed', 'dismiss', {duration:2000});
-            this.awaitingDeployment = false;
-          },
-          err => {
-            console.log(err);
-            this.snackBar.open('It failed :(', 'dismiss', {duration:1000});
-            this.awaitingDeployment = false;
-          }
+        () => {
+          this.snackBar.open('Reward Mile with ' + form.value['partners'] + ' deployed', 'dismiss', { duration: 2000 });
+          this.awaitingDeployment = false;
+        },
+        err => {
+          console.log(err);
+          this.snackBar.open('It failed :(', 'dismiss', { duration: 1000 });
+          this.awaitingDeployment = false;
+        }
         );
     }
 

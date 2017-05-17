@@ -23,28 +23,33 @@ import { PendingDetailsPanelComponent } from './panel/pending-details-panel/pend
 import { RequestsPanelComponent } from './panel/requests-panel/requests-panel.component';
 import { RequestsDetailsPanelComponent } from './panel/requests-details-panel/requests-details-panel.component';
 
+import { environment } from '../environments/environment';
+console.log(environment);
+
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: ':business', redirectTo: ':business/activated', pathMatch: 'full' },
-  { path: ':business/activated', component:  PanelComponent },
-  { path: ':business/deactivated', component:  DeactivePanelComponent },
-  { path: ':business/requests', component:  RequestsPanelComponent },
-  { path: ':business/pending', component: PendingPanelComponent},
-  { path: ':business/requests/:scheme', component: RequestsDetailsPanelComponent},
+  { path: ':business/activated', component: PanelComponent },
+  { path: ':business/deactivated', component: DeactivePanelComponent },
+  { path: ':business/requests', component: RequestsPanelComponent },
+  { path: ':business/pending', component: PendingPanelComponent },
+  { path: ':business/requests/:scheme', component: RequestsDetailsPanelComponent },
   { path: ':business/activated/:scheme', component: ActiveDetailsPanelComponent },
   { path: ':business/pending/:scheme', component: PendingDetailsPanelComponent },
   { path: ':business/contract/setup', component: ContractSetupComponent }
 
 ];
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBQNNPknNbL21FqtJLDbZpd9DvC3Nqudnk",
-  authDomain: "laas-1.firebaseapp.com",
-  databaseURL: "https://laas-1.firebaseio.com",
-  projectId: "laas-1",
-  storageBucket: "laas-1.appspot.com",
-  messagingSenderId: "622638005740"
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBQNNPknNbL21FqtJLDbZpd9DvC3Nqudnk",
+//   authDomain: "laas-1.firebaseapp.com",
+//   databaseURL: "https://laas-1.firebaseio.com",
+//   projectId: "laas-1",
+//   storageBucket: "laas-1.appspot.com",
+//   messagingSenderId: "622638005740"
+// };
+
+
 
 @NgModule({
   declarations: [
@@ -70,7 +75,7 @@ const firebaseConfig = {
     HttpModule,
     MaterialModule,
     RouterModule.forRoot(appRoutes),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     JsonpModule
   ],
   entryComponents: [

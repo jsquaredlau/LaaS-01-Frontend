@@ -29,11 +29,11 @@ export class RequestsDetailsPanelComponent implements OnInit {
   public isRewardMile: boolean;
   public partners: any;
 
-  constructor(private contractService: ContractService, public snackBar: MdSnackBar, private route: ActivatedRoute, private af: AngularFire, private router: Router) {}
+  constructor(private contractService: ContractService, public snackBar: MdSnackBar, private route: ActivatedRoute, private af: AngularFire, private router: Router) { }
 
   ngOnInit() {
     this.awaitingResponse = false;
-    this.businessName = this.route.snapshot.params['business'];
+    this.businessName = this.route.snapshot.params['business'].replace('%20', ' ');
     this.schemeName = this.route.snapshot.params['scheme'];
 
     this.item = this.af.database.object('/schemes/' + this.businessName + '/collaborationRequests' + '/' + this.schemeName);
@@ -61,15 +61,15 @@ export class RequestsDetailsPanelComponent implements OnInit {
     this.awaitingResponse = true;
     this.contractService.acceptCollaborationRequest(this.businessName, this.owner, this.contractType, this.schemeName.replace('%20', ' '), form.value)
       .subscribe(
-        () => {
-          this.snackBar.open('Collab with ' + form.value['owner'] + ' has been accepted', 'dismiss', {duration:2000});
-          this.awaitingResponse = false;
-          this.router.navigate([this.businessName + '/activated']);
-        },
-        (err) => {
-          console.log(err);
-          this.snackBar.open('It failed :(', 'dismiss', {duration: 1000});
-        }
+      () => {
+        this.snackBar.open('Collab with ' + form.value['owner'] + ' has been accepted', 'dismiss', { duration: 2000 });
+        this.awaitingResponse = false;
+        this.router.navigate([this.businessName + '/activated']);
+      },
+      (err) => {
+        console.log(err);
+        this.snackBar.open('It failed :(', 'dismiss', { duration: 1000 });
+      }
       );
   }
 }

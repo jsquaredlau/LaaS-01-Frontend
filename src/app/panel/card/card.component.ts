@@ -15,8 +15,8 @@ export class CardComponent implements OnInit {
   @Input() title: any;
 
   ngOnInit() {
-    this.businessName = this.route.snapshot.params['business'];
-    if (this.title !== undefined){
+    this.businessName = this.route.snapshot.params['business'].replace('%20', ' ');
+    if (this.title !== undefined) {
       if (typeof this.title === 'string') {
         this.cardName = this.title;
       } else if (typeof this.title === 'object') {
