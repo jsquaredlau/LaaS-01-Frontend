@@ -2,9 +2,7 @@
   <md-sidenav #sidenav class="sidenav" mode="push" (close-start)="closeHamburger()  ">
 
     <md-card class="sidebar-header">
-      <!--<md-card-title>BASYXLab</md-card-title>-->
-      <!--<md-card-subtitle>Some shitty company</md-card-subtitle>-->
-      <md-select placeholder="Company Name" [(ngModel)]="selectedValue" (onClose)="onSelect(selectedValue)" ngModel="BASYXLab">
+      <md-select placeholder="Company Name" [(ngModel)]="selectedValue" (onClose)="onSelect(selectedValue)" ngModel="Grids Hostel">
         <md-option *ngFor="let business of businesses" [value]="business.value">
           {{ business.viewValue }}
         </md-option>

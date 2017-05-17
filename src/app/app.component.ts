@@ -10,20 +10,20 @@ import {Router} from "@angular/router";
   encapsulation: ViewEncapsulation.None,
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   public hamburgerOpen: boolean = false;
   public selectedValue: string;
 
   public businesses = [
-    {value: 'BASYXLab', viewValue: 'BASYXLab'},
-    {value: 'NeikidFyre', viewValue: 'NeikidFyre'},
-    {value: 'Ataraxia', viewValue: 'Ataraxia'}
+    { value: 'Grids Hostel', viewValue: 'Grids Hostel' },
+    { value: 'Otaru Cafe', viewValue: 'Otaru Cafe' },
+    { value: 'Muffin Collective', viewValue: 'Muffin Collective' }
   ];
 
-  constructor(af: AngularFire, private router: Router) {}
+  constructor(af: AngularFire, private router: Router) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.selectedValue = this.businesses[0].viewValue;
   }
 
@@ -42,4 +42,3 @@ export class AppComponent implements OnInit{
   }
 
 }
-
