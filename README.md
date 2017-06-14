@@ -16,7 +16,7 @@ To run a server that communicates with a production LaaS Backend server, run one
 * npm run serve-prod-2
 * npm run serve-prod-3
 
-To change the endpoint for api calls that this LaaS Frontend server makes, refer to the files in /src/environments/ The environment files correspond in this way:
+To change firebase config details and the endpoint for api calls that this LaaS Frontend server makes, refer to the files in /src/environments/ The environment files correspond in this way:
 * environment.dev.ts -> npm run serve-dev
 * environment.prod2.ts -> npm run serve-prod-2
 
